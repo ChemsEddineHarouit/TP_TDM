@@ -9,6 +9,14 @@ class   Controller private constructor(){
         1 to arrayListOf(pub1_1, pub1_2),
         2 to arrayListOf(pub2_1)
     )
+    val descriptions = listOf<String>(
+        "ceci est la pub 1 achetez svp",
+        "voici la pub 2 venez",
+        "regardez la pub 3 et ahetez",
+        "wellah regardez la pub 4 ahetez",
+        "prix choc de la pub 5",
+        "Ne ratez pas la pub 6"
+    )
     fun addPub(pub : Pub){
         pubs.add(pub)
     }

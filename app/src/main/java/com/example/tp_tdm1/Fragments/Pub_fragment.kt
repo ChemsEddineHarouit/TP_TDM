@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import com.example.tp_tdm1.Controllers.Controller
 import com.example.tp_tdm1.Models.Pub
 
@@ -63,9 +64,10 @@ class Pub_fragment : Fragment(){
         if(imgs != null){
             for (img in imgs){
                 val imageView = ImageView(context)
-                imageView.layoutParams = LinearLayout.LayoutParams(160, 160)
+                imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT)
+//                imageView.scaleType = ImageView.ScaleType.CENTER_CROP
                 imageView.setImageResource(img)
-                pubFragment_id.addView(imageView)
+                pubFragment_id.addView(imageView, 0)
             }
 
         }

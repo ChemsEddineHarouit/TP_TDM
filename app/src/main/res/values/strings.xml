@@ -2,13 +2,12 @@
     <string name="app_name">TP_TDM1</string>
     <string name="action_settings">Settings</string>
 
-    <string name="pub_1_desc">Voici la pub num 1</string>
-    <string name="pub_2_desc">Voici la pub num 2</string>
-    <string name="pub_3_desc">Voici la pub num 3</string>
-    <string name="pub_4_desc">Voici la pub num 4</string>
-    <string name="pub_5_desc">Voici la pub num 5</string>
-    <string name="pub_6_desc">Voici la pub num 6</string>
-    <string name="pub_7_desc">Voici la pub num 7</string>
+    <string name="pub_1_desc">ceci est la pub 1 achetez svp</string>
+    <string name="pub_2_desc">voici la pub 2 venez</string>
+    <string name="pub_3_desc">regardez la pub 3 et ahetez</string>
+    <string name="pub_4_desc">wellah regardez la pub 4 ahetez</string>
+    <string name="pub_5_desc">prix choc de la pub 5</string>
+    <string name="pub_6_desc">Ne ratez pas la pub 6</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -25,14 +25,8 @@ class MainActivity : AppCompatActivity()  {
     lateinit var pubFragment : Pub_fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-        val descriptions = listOf<String>(
-            "ceci est la pub 1 ahetez svp",
-            "voici la pub 2 venez",
-            "regardez la pub 3 et ahetez",
-            "wellah regardez la pub 4 ahetez",
-            "prix choc de la pub 5",
-            "Ne ratez pas la pub 6")
+        val controller = Controller.instance
+        val descriptions = controller.descriptions
         var i : Int = 0
         for (description in descriptions){
             i++
