@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
 import com.example.tp_tdm1.Controllers.Controller
 import com.example.tp_tdm1.Models.Pub
 
@@ -39,11 +41,12 @@ class Pub_fragment : Fragment(){
         arguments?.let {
             num = it.getInt(ARG_PARAM1)
             this.pubInit()
+
         }
 
     }
 
-    fun pubInit(): Unit {
+    private fun pubInit(): Unit {
         val tag : Int = this.num
         val controller = Controller.instance
         val pub : Pub = controller.getPub(tag)
@@ -51,9 +54,26 @@ class Pub_fragment : Fragment(){
         this.pub = pub
     }
 
+    private fun pubDisplay() {
+        description_id.setText(pub?.description)
+        val controller = Controller.instance
+        val imgs = controller.getImagesOfPub(this.pub)
+        println("---------------------------------------")
+        println(imgs)
+        if(imgs != null){
+            for (img in imgs){
+                val imageView = ImageView(context)
+                imageView.layoutParams = LinearLayout.LayoutParams(160, 160)
+                imageView.setImageResource(img)
+                pubFragment_id.addView(imageView)
+            }
+
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        description_id.setText(pub?.description)
+        pubDisplay()
     }
 
     override fun onCreateView(
