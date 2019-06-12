@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
+             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:clickable="true"
              tools:context=".Fragments.Pub_fragment" android:background="#61030101">
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
-            android:orientation="horizontal"
+    <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" android:id="@+id/pubFragment_id">
-        <TextView
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/hello_blank_fragment" android:id="@+id/description_id"/>
-    </LinearLayout>
+                android:layout_height="match_parent" android:id="@+id/pubFragment_id">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hello_blank_fragment" android:id="@+id/description_id"/>
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>
