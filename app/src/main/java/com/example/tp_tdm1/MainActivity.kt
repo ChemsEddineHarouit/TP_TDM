@@ -7,18 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
 import com.example.tp_tdm1.Controllers.Controller
 import com.example.tp_tdm1.Fragments.Pub_fragment
 import com.example.tp_tdm1.Models.Pub
 
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.android.synthetic.main.fragment_pub.*
-import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity()  {
 
@@ -26,11 +19,11 @@ class MainActivity : AppCompatActivity()  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val controller = Controller.instance
-        val descriptions = controller.descriptions
-        var i : Int = 0
-        for (description in descriptions){
-            i++
-            var pub : Pub = Pub(i, description)
+        val pubDescriptions = controller.pubDescriptions
+        for (pubNum in pubDescriptions.keys){
+            val pubName = pubDescriptions.get(pubNum)?.get(0)
+            val pubDescription = pubDescriptions.get(pubNum)?.get(1)
+            var pub : Pub = Pub(pubNum, pubName, pubDescription)
             val controller = Controller.instance
             controller.addPub(pub)
         }

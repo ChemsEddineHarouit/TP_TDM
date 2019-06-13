@@ -45,6 +45,7 @@ class Pub_fragment : Fragment(){
 
         }
 
+
     }
 
     private fun pubInit(): Unit {
@@ -57,6 +58,7 @@ class Pub_fragment : Fragment(){
 
     private fun pubDisplay() {
         description_id.setText(pub?.description)
+        name_id.setText(pub?.name)
         val controller = Controller.instance
         val imgs = controller.getImagesOfPub(this.pub)
         println("---------------------------------------")
@@ -65,9 +67,11 @@ class Pub_fragment : Fragment(){
             for (img in imgs){
                 val imageView = ImageView(context)
                 imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT)
-//                imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+//                imageView.scaleType = ImageView.ScaleType.FIT_XY
                 imageView.setImageResource(img)
-                pubFragment_id.addView(imageView, 0)
+                imageView.setPadding(10, 10, 10, 10)
+                imageView.adjustViewBounds = true
+                pubFragment_id.addView(imageView, 1)
             }
 
         }
