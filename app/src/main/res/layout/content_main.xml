@@ -9,65 +9,27 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/activity_main"
         tools:context=".MainActivity">
-    <ScrollView
+    <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <LinearLayout
-                android:orientation="vertical"
+            android:layout_height="match_parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+        <Spinner
+                android:visibility="invisible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/categories_pubs_spinner"
+                android:layout_weight="1" android:background="#F0FF0000"/>
+        <SearchView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/rootContainer">
-            <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                <ImageView
-                        android:layout_width="112dp"
-                        android:onClick="pubClick"
-                        android:tag="1"
-                        android:layout_height="200dp" app:srcCompat="@color/colorAccent" android:id="@+id/pub1_img_id"
-                        android:layout_gravity="end"
-                        android:padding="5dp" android:contentDescription="@string/pub_1_desc"/>
-                <ImageView
-                        android:layout_width="match_parent"
-                        android:onClick="pubClick"
-                        android:tag="2"
-                        android:layout_height="200dp" app:srcCompat="@color/cardview_shadow_start_color"
-                        android:id="@+id/pub2_img_id"
-                        android:padding="5dp" android:contentDescription="@string/pub_2_desc"/>
-            </LinearLayout>
-            <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="124dp" app:srcCompat="@color/design_default_color_primary"
-                    android:id="@+id/pub3_img_id"
-                    android:tag="3"
-                    android:onClick="pubClick"
-                    android:padding="5dp" android:contentDescription="@string/pub_3_desc"/>
-            <ImageView
-                    android:layout_width="match_parent"
-                    android:tag="4"
-                    android:onClick="pubClick"
-                    android:layout_height="235dp" app:srcCompat="@color/colorPrimaryDark" android:id="@+id/pub4_img_id"
-                    android:padding="5dp" android:contentDescription="@string/pub_4_desc"
-                    android:adjustViewBounds="true" android:fadingEdge="horizontal|vertical"/>
-            <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                <ImageView
-                        android:layout_width="206dp"
-                        android:onClick="pubClick"
-                        android:layout_height="200dp" app:srcCompat="@android:color/holo_blue_light"
-                        android:id="@+id/pub5_img_id"
-                        android:tag="5"
-                        android:padding="5dp" android:contentDescription="@string/pub_5_desc"/>
-                <ImageView
-                        android:layout_width="match_parent"
-                        android:onClick="pubClick"
-                        android:tag="6"
-                        android:layout_height="200dp" app:srcCompat="?attr/colorPrimary" android:id="@+id/pub6_img_id"
-                        android:padding="5dp" android:contentDescription="@string/pub_6_desc"/>
-            </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
+                android:layout_height="wrap_content"
+                android:background="#00E61010">
+        </SearchView>
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/pubsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+        >
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

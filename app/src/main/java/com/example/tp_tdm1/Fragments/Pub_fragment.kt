@@ -51,8 +51,8 @@ class Pub_fragment : Fragment(){
     private fun pubInit(): Unit {
         val tag : Int = this.num
         val controller = Controller.instance
-        val pub : Pub = controller.getPub(tag)
-        pub.log()
+        val pub : Pub? = controller.getPub(tag)
+        pub?.log()
         this.pub = pub
     }
 
@@ -60,7 +60,7 @@ class Pub_fragment : Fragment(){
         description_id.setText(pub?.description)
         name_id.setText(pub?.name)
         val controller = Controller.instance
-        val imgs = controller.getImagesOfPub(this.pub)
+        val imgs = pub?.imgs
         println("---------------------------------------")
         println(imgs)
         if(imgs != null){
