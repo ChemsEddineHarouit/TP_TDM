@@ -15,15 +15,11 @@
             android:layout_height="match_parent" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
-        <Spinner
-                android:visibility="invisible"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/categories_pubs_spinner"
-                android:layout_weight="1" android:background="#F0FF0000"/>
         <SearchView
+                android:id="@+id/search_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#00E61010">
+                android:background="#00E61010" tools:ignore="InvalidId">
         </SearchView>
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/pubsRecyclerView"

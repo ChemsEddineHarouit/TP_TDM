@@ -14,5 +14,9 @@ class Pub(numero : Int, name : String?, description : String?, imgs : List<Int>?
 
     }
 
+    override fun toString(): String {
+        return name.toString()
+    }
+
 
 }

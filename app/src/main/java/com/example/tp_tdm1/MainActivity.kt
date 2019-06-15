@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -22,6 +23,7 @@ import kotlinx.android.synthetic.main.content_main.*
 class MainActivity : AppCompatActivity()  {
 
     lateinit var pubFragment : Pub_fragment
+    lateinit var pubAdapter : PubAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val controller = Controller.instance
@@ -45,17 +47,29 @@ class MainActivity : AppCompatActivity()  {
 
         pubsRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false) as RecyclerView.LayoutManager?
 
-        var adapter = PubAdapter(ArrayList(controller.pubs))
-        pubsRecyclerView.adapter = adapter
-
-
-
-
+        pubAdapter = PubAdapter(ArrayList(controller.pubs))
+        pubsRecyclerView.adapter = pubAdapter
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
+        search_view.setQueryHint("Votre Recherche")
+
+        search_view.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener {
+
+            override fun onQueryTextChange(query: String): Boolean {
+                pubAdapter!!.filter.filter(query)
+                return false
+            }
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+                pubAdapter!!.filter.filter(query)
+                return false
+            }
+
+        })
         return true
     }
 
@@ -84,3 +98,7 @@ class MainActivity : AppCompatActivity()  {
 
     }
 }
+//
+//private fun android.widget.SearchView.setOnQueryTextListener() {
+//    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//}

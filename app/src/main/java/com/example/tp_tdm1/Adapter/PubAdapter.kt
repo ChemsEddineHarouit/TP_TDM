@@ -6,9 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import com.example.tp_tdm1.Fragments.Pub_fragment
 import com.example.tp_tdm1.MainActivity
 import com.example.tp_tdm1.Models.Pub
@@ -17,8 +15,10 @@ import java.security.AccessController.getContext
 
 
 
-class PubAdapter(val pubList: ArrayList<Pub>): RecyclerView.Adapter<PubAdapter.ViewHolder>() {
+class PubAdapter(var pubList: ArrayList<Pub>): RecyclerView.Adapter<PubAdapter.ViewHolder>(), Filterable {
 
+    var pubSearchList : ArrayList<Pub>? = null
+    val allPubs = pubList
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val pub = pubList[position]
         holder?.name?.text = pub.name
@@ -40,5 +40,37 @@ class PubAdapter(val pubList: ArrayList<Pub>): RecyclerView.Adapter<PubAdapter.V
         val name = itemView.findViewById<TextView>(R.id.pubRowName)
         val img = itemView.findViewById<ImageView>(R.id.pubRowImg)
 
+    }
+
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(charSequence: CharSequence): Filter.FilterResults {
+                val charString = charSequence.toString()
+                if (charString.isEmpty()) {
+                    pubSearchList = allPubs
+                } else {
+                    val filteredList = ArrayList<Pub>()
+                    for (pub in allPubs) {
+                        if (pub.name!!.toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(pub)
+                        }
+                    }
+                    pubSearchList = filteredList
+                }
+                val filterResults = Filter.FilterResults()
+                filterResults.values = pubSearchList
+                return filterResults
+            }
+            override fun publishResults(charSequence: CharSequence, filterResults: Filter.FilterResults) {
+                pubSearchList = filterResults.values as ArrayList<Pub>
+                println("---------------------------- $pubSearchList")
+//                pubList.clear();
+//                pubList.addAll(pubSearchList!!);
+                if(pubSearchList != null) pubList = pubSearchList!!
+                else                        pubList = allPubs
+                notifyDataSetChanged()
+            }
+        }
     }
 }
