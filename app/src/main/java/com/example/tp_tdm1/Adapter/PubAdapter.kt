@@ -1,24 +1,24 @@
 package com.example.tp_tdm1.Adapter
 
-import android.support.v4.app.FragmentTransaction
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-import com.example.tp_tdm1.Fragments.Pub_fragment
-import com.example.tp_tdm1.MainActivity
+import android.widget.Filter
+import android.widget.Filterable
+import android.widget.ImageView
+import android.widget.TextView
 import com.example.tp_tdm1.Models.Pub
 import com.example.tp_tdm1.R
-import java.security.AccessController.getContext
 
 
+class PubAdapter(var pubList: List<Pub>): RecyclerView.Adapter<PubAdapter.ViewHolder>(), Filterable {
 
-class PubAdapter(var pubList: ArrayList<Pub>): RecyclerView.Adapter<PubAdapter.ViewHolder>(), Filterable {
-
-    var pubSearchList : ArrayList<Pub>? = null
+    var pubSearchList : List<Pub>? = null
     val allPubs = pubList
+
+
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val pub = pubList[position]
         holder?.name?.text = pub.name
@@ -26,6 +26,9 @@ class PubAdapter(var pubList: ArrayList<Pub>): RecyclerView.Adapter<PubAdapter.V
         val img_id = pub.imgs?.first()
         if(img_id != null)  holder?.img?.setImageResource(img_id)
         holder?.img?.setTag(pub.numero)
+        holder.price.text = "Prix: ${pub.price}"
+        holder.date.text = "Prix: ${pub.date}"
+        //pubList.sortedWith(compareBy({it.name}))
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -41,7 +44,29 @@ class PubAdapter(var pubList: ArrayList<Pub>): RecyclerView.Adapter<PubAdapter.V
         val name = itemView.findViewById<TextView>(R.id.pubRowName)
         val description = itemView.findViewById<TextView>(R.id.pubRowDesc)
         val img = itemView.findViewById<ImageView>(R.id.pubRowImg)
+        val price = itemView.findViewById<TextView>(R.id.pubRowPrice)
+        val date = itemView.findViewById<TextView>(R.id.pubRowDate)
+    }
 
+    fun sort(attr : String, asc :Boolean = true) : Boolean{
+
+        when (attr) {
+            "name" -> {
+                pubList = pubList.sortedWith(compareBy {it.name})
+            }
+            "price" -> {
+                pubList = pubList.sortedWith(compareBy {it.price})
+            }
+            "date" -> {
+                pubList = pubList.sortedWith(compareBy {it.date})
+            }
+        }
+
+        if (!asc){
+            pubList = pubList.reversed()
+        }
+        notifyDataSetChanged()
+        return true
     }
 
 

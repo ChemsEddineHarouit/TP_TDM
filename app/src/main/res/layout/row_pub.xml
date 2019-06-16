@@ -25,6 +25,14 @@
                     android:text="TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/pubRowDesc"/>
+            <TextView
+                    android:text="Date:"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/pubRowDate"/>
+            <TextView
+                    android:text="Prix: "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/pubRowPrice"/>
         </LinearLayout>
         <ImageView
                 android:onClick="pubClick"

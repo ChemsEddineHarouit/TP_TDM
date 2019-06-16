@@ -22,6 +22,17 @@ class   Controller private constructor(){
         5 to listOf("Villa F6 Bordj", "Villa mebnya ki lkwava, ghir siman. Wer9a mates3a"),
         6 to listOf("Villa à Hassi Messaoud F8", "Vous êtes sérieux? vous avez cru que c'était à Hassi Messaoud?")
     )
+
+    val pubPrices = hashMapOf(
+        1 to 120000.toFloat(),
+        2 to 150000.toFloat(),
+        3 to 100000.toFloat(),
+        4 to 180000.toFloat(),
+        5 to 200000.toFloat(),
+        6 to 50000.toFloat()
+
+    )
+
     fun addPub(pub : Pub){
         pubs.add(pub)
     }

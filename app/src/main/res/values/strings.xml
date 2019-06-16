@@ -16,4 +16,9 @@
         <item>Ecole</item>
     </string-array>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="action_sort_date_desc">Plus récente</string>
+    <string name="action_sort_date_asc">Plus ancienne</string>
+    <string name="action_sort_price_desc">Plus chére</string>
+    <string name="action_sort_price_asc">Moins chére</string>
 </resources>

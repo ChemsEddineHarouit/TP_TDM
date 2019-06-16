@@ -6,12 +6,10 @@ import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
-import android.widget.Toast.LENGTH_LONG
 import com.example.tp_tdm1.Adapter.PubAdapter
 import com.example.tp_tdm1.Controllers.Controller
 import com.example.tp_tdm1.Fragments.Pub_fragment
@@ -25,16 +23,25 @@ class MainActivity : AppCompatActivity()  {
     lateinit var pubFragment : Pub_fragment
     lateinit var pubAdapter : PubAdapter
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         val controller = Controller.instance
         val pubDescriptions = controller.pubDescriptions
         val pubsImgs = controller.pubsImgs
+        val pubPrices = controller.pubPrices
+
         for (pubNum in pubDescriptions.keys){
             val pubName = pubDescriptions.get(pubNum)?.get(0)
             val pubDescription = pubDescriptions.get(pubNum)?.get(1)
-            var pub : Pub = Pub(pubNum, pubName, pubDescription, pubsImgs.get(pubNum))
-            val controller = Controller.instance
+            val price = pubPrices.get(pubNum) as Float
+
+            var pub : Pub = Pub(pubNum, pubName, pubDescription, price,pubsImgs.get(pubNum))
+//            val controller = Controller.instance
             controller.addPub(pub)
+
+            // to test sort by date: else : all pubs will have the same date
+            //Thread.sleep(500)
         }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -77,10 +84,23 @@ class MainActivity : AppCompatActivity()  {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
+
+        when (item.itemId) {
+            R.id.action_sort_price_desc -> {
+                pubAdapter.sort("price", asc = false)
+            }
+            R.id.action_sort_price_asc -> {
+                pubAdapter.sort("price")
+            }
+            R.id.action_sort_date_desc -> {
+                pubAdapter.sort("date", asc = false)
+            }
+            R.id.action_sort_date_asc -> {
+                pubAdapter.sort("date")
+            }
             else -> super.onOptionsItemSelected(item)
         }
+        return true
     }
 
 
