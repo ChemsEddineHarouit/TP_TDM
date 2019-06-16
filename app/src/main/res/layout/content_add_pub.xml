@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              app:layout_behavior="@string/appbar_scrolling_view_behavior"
+              tools:showIn="@layout/activity_add_pub"
+              tools:context=".AddPub" android:id="@+id/add_pub_layout">
+    <TextView
+            android:text="Ajouter une pub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/section_title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" android:paddingLeft="75dp"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/add_pub_name" android:layout_marginTop="100dp" android:hint="Titre"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/add_pub_price" android:hint="Prix"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:inputType="textMultiLine"
+            android:gravity="start|top"
+            android:ems="10"
+            android:id="@+id/add_pub_description" android:hint="Description"/>
+    <Button
+            android:text="choisir images"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/add_pub_pick_imgs"/>
+    <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/add_pub_imgs_container">
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="match_parent"
+                      android:orientation="horizontal">
+            <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="100dp" app:srcCompat="@drawable/p1_1" android:id="@+id/imageView"/>
+            <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="100dp" app:srcCompat="@drawable/p2_1" android:id="@+id/imageView2"/>
+        </LinearLayout>
+    </HorizontalScrollView>
+    <Button
+            android:text="Valider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/add_pub_btn"/>
+
+</LinearLayout>

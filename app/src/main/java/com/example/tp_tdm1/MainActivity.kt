@@ -1,6 +1,8 @@
 package com.example.tp_tdm1
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +26,12 @@ class MainActivity : AppCompatActivity()  {
     lateinit var pubAdapter : PubAdapter
 
 
+    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
+        super.onSaveInstanceState(outState, outPersistentState)
+
+
+        outState.putStringArrayList()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val controller = Controller.instance
@@ -36,7 +44,7 @@ class MainActivity : AppCompatActivity()  {
             val pubDescription = pubDescriptions.get(pubNum)?.get(1)
             val price = pubPrices.get(pubNum) as Float
 
-            var pub : Pub = Pub(pubNum, pubName, pubDescription, price,pubsImgs.get(pubNum))
+            var pub : Pub = Pub(pubNum, pubName, pubDescription, price, pubsImgs.get(pubNum))
 //            val controller = Controller.instance
             controller.addPub(pub)
 
@@ -47,9 +55,9 @@ class MainActivity : AppCompatActivity()  {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        add_pub.setOnClickListener { view ->
+            val intent = Intent(this, AddPub::class.java)
+            startActivity(intent)
         }
 
         pubsRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false) as RecyclerView.LayoutManager?

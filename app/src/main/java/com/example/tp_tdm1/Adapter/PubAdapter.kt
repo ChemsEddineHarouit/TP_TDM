@@ -26,7 +26,7 @@ class PubAdapter(var pubList: List<Pub>): RecyclerView.Adapter<PubAdapter.ViewHo
         if(img_id != null)  holder?.img?.setImageResource(img_id)
         holder?.img?.setTag(pub.numero)
         holder.price.text = "Prix: ${pub.price}"
-        holder.date.text = "Prix: ${pub.date}"
+        holder.date.text = "Date: ${pub.date}"
         //pubList.sortedWith(compareBy({it.name}))
     }
 

@@ -21,4 +21,5 @@
     <string name="action_sort_date_asc">Plus ancienne</string>
     <string name="action_sort_price_desc">Plus chére</string>
     <string name="action_sort_price_asc">Moins chére</string>
+    <string name="title_activity_add_pub">AddPub</string>
 </resources>
