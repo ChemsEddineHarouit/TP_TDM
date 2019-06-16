@@ -17,6 +17,7 @@ import com.example.tp_tdm1.Models.Pub
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity()  {
 
@@ -30,13 +31,14 @@ class MainActivity : AppCompatActivity()  {
         val pubDescriptions = controller.pubDescriptions
         val pubsImgs = controller.pubsImgs
         val pubPrices = controller.pubPrices
+        val pubTels = controller.pubTels
 
         for (pubNum in pubDescriptions.keys){
             val pubName = pubDescriptions.get(pubNum)?.get(0)
             val pubDescription = pubDescriptions.get(pubNum)?.get(1)
-            val price = pubPrices.get(pubNum) as Float
-
-            var pub : Pub = Pub(pubNum, pubName, pubDescription, price,pubsImgs.get(pubNum))
+            val price = pubPrices.get(pubNum) as Int
+            val tel = pubTels.get(pubNum) as String
+            var pub : Pub = Pub(pubNum, pubName, pubDescription, price,pubsImgs.get(pubNum), tel)
 //            val controller = Controller.instance
             controller.addPub(pub)
 
@@ -62,7 +64,7 @@ class MainActivity : AppCompatActivity()  {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
-        search_view.setQueryHint("Votre Recherche")
+        search_view.queryHint = "Votre Recherche"
 
         search_view.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener {
 

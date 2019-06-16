@@ -16,7 +16,7 @@ import com.example.tp_tdm1.R
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.fragment_pub.*
 import android.R.attr.radius
-
+import java.text.SimpleDateFormat
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -62,6 +62,10 @@ class Pub_fragment : Fragment(){
     private fun pubDisplay() {
         description_id.setText(pub?.description)
         name_id.setText(pub?.name)
+        prix_id.text = "${pub?.price} DA"
+        val dateFormat = SimpleDateFormat("dd MMMM yyyy à hh:mm")
+        date_id.text = "Ajouté le: ${dateFormat.format(pub?.date?.time)}"
+        tel_id.text = "Tél: ${pub?.tel}"
         val controller = Controller.instance
         val imgs = pub?.imgs
         println("---------------------------------------")

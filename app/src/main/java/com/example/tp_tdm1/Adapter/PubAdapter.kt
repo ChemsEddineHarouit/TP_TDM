@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.tp_tdm1.Models.Pub
 import com.example.tp_tdm1.R
+import java.text.SimpleDateFormat
 
 
 class PubAdapter(var pubList: List<Pub>): RecyclerView.Adapter<PubAdapter.ViewHolder>(), Filterable {
@@ -26,8 +27,11 @@ class PubAdapter(var pubList: List<Pub>): RecyclerView.Adapter<PubAdapter.ViewHo
         val img_id = pub.imgs?.first()
         if(img_id != null)  holder?.img?.setImageResource(img_id)
         holder?.img?.setTag(pub.numero)
-        holder.price.text = "Prix: ${pub.price}"
-        holder.date.text = "Prix: ${pub.date}"
+        holder.price.text = "${pub.price} DA"
+        val dateFormat = SimpleDateFormat("dd MMMM yyyy à hh:mm")
+        holder.date.text = "Ajouté le: ${dateFormat.format(pub.date.time)}"
+        holder.tel.text = "Tél: ${pub.tel}"
+
         //pubList.sortedWith(compareBy({it.name}))
     }
 
@@ -46,6 +50,7 @@ class PubAdapter(var pubList: List<Pub>): RecyclerView.Adapter<PubAdapter.ViewHo
         val img = itemView.findViewById<ImageView>(R.id.pubRowImg)
         val price = itemView.findViewById<TextView>(R.id.pubRowPrice)
         val date = itemView.findViewById<TextView>(R.id.pubRowDate)
+        val tel = itemView.findViewById<TextView>(R.id.pubRowTel)
     }
 
     fun sort(attr : String, asc :Boolean = true) : Boolean{

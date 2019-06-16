@@ -15,22 +15,30 @@ class   Controller private constructor(){
         6 to arrayListOf(p6_1, p6_2)
     )
     val pubDescriptions = hashMapOf<Int, List<String>>(
-        1 to listOf("Villa moderne F3 Kouba", "Très jolie villa, je la mets en vente par besoin d'agent. Attention on a découvert un fantome dedans"),
-        2 to listOf("3 Villas Tlemcen", "3 Villas avec piscine, très cher. On veut vous arnaquer"),
-        3 to listOf("Appartement F4 Oued Semar", "Besoin d'un séjour à Oued Semar? Un appartement au dessus de Hamza. Un complet poulet vous est offert!"),
-        4 to listOf("Dar el Badji F3", "El badji habitait cette maison, câlme et pas chère"),
-        5 to listOf("Villa F6 Bordj", "Villa mebnya ki lkwava, ghir siman. Wer9a mates3a"),
-        6 to listOf("Villa à Hassi Messaoud F8", "Vous êtes sérieux? vous avez cru que c'était à Hassi Messaoud?")
+        1 to listOf("3 Villas Tlemcen", "3 Villas avec piscine, très cher. On veut vous arnaquer"),
+        2 to listOf("Villa à Hassi Messaoud F8", "Vous êtes sérieux? vous avez cru que c'était à Hassi Messaoud?"),
+        4 to listOf("Villa moderne F3 Kouba", "Très jolie villa, je la mets en vente par besoin d'agent. Attention on a découvert un fantome dedans"),
+        3 to listOf("Villa F6 Bordj", "Villa mebnya ki lkwava, ghir siman. Wer9a mates3a"),
+        5 to listOf("Appartement F4 Oued Semar", "Besoin d'un séjour à Oued Semar? Un appartement au dessus de Hamza. Un complet poulet vous est offert!"),
+        6 to listOf("Dar el Badji F3", "El badji habitait cette maison, câlme et pas chère")
     )
 
     val pubPrices = hashMapOf(
-        1 to 120000.toFloat(),
-        2 to 150000.toFloat(),
-        3 to 100000.toFloat(),
-        4 to 180000.toFloat(),
-        5 to 200000.toFloat(),
-        6 to 50000.toFloat()
+        1 to 120000,
+        2 to 150000,
+        3 to 100000,
+        4 to 180000,
+        5 to 200000,
+        6 to 50000
+    )
 
+    val pubTels = hashMapOf(
+        1 to "054 065 180",
+        2 to "054 197 379",
+        3 to "077 999 531",
+        4 to "066 201 959",
+        5 to "055 167 792",
+        6 to "055 415 443"
     )
 
     fun addPub(pub : Pub){
