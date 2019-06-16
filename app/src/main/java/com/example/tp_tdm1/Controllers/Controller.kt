@@ -22,6 +22,17 @@ class   Controller private constructor(){
         5 to listOf("Ecole", "Les écoles privées sont des écoles qui ne sont pas administrées par leur gouvernement local, étatique ou national et qui conservent donc le droit de pratiquer la religion"),
         6 to listOf("Voyage", "Un voyage pour famille dans des hotels 5 étoiles, Piscine, Spa, khoudra et même à oued semar. Composez le 000")
     )
+
+    val pubPrices = hashMapOf(
+        1 to 120000.toFloat(),
+        2 to 150000.toFloat(),
+        3 to 100000.toFloat(),
+        4 to 180000.toFloat(),
+        5 to 200000.toFloat(),
+        6 to 50000.toFloat()
+
+    )
+
     fun addPub(pub : Pub){
         pubs.add(pub)
     }

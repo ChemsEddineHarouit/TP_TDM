@@ -18,4 +18,12 @@
             android:id="@+id/pubRowImg"
             android:adjustViewBounds="true"
             android:background="@color/colorPubBackGround" />
+    <TextView
+            android:text="Date:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/pubRowDate"/>
+    <TextView
+            android:text="Prix: "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/pubRowPrice"/>
 </LinearLayout>

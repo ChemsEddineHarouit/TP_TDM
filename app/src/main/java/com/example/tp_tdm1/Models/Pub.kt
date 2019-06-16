@@ -1,9 +1,15 @@
 package com.example.tp_tdm1.Models
 
-class Pub(numero : Int, name : String?, description : String?, imgs : List<Int>?){
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.util.*
+
+class Pub(numero : Int, name : String?, description : String?,price : Float, imgs : List<Int>?){
     val numero = numero
     val name = name
     val description = description
+    val price = price
+    val date = Calendar.getInstance().time
     val imgs = imgs
 
     fun log(): Unit {

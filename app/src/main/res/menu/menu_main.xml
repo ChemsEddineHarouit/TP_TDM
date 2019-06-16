@@ -2,8 +2,11 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="com.example.tp_tdm1.MainActivity">
-    <item android:id="@+id/action_settings"
-          android:title="@string/action_settings"
+    <item android:title="@string/action_sort_date_desc" android:id="@+id/action_sort_date_desc"/>
+    <item android:title="@string/action_sort_date_asc" android:id="@+id/action_sort_date_asc"/>
+    <item android:title="@string/action_sort_price_asc" android:id="@+id/action_sort_price_asc"/>
+    <item android:id="@+id/action_sort_price_desc"
+          android:title="@string/action_sort_price_desc"
           android:orderInCategory="100"
           app:showAsAction="never"/>
 </menu>
