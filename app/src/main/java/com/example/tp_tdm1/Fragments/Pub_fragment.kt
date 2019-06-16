@@ -15,6 +15,9 @@ import com.example.tp_tdm1.Models.Pub
 import com.example.tp_tdm1.R
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.fragment_pub.*
+import android.R.attr.radius
+
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -69,6 +72,7 @@ class Pub_fragment : Fragment(){
                 imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT)
 //                imageView.scaleType = ImageView.ScaleType.FIT_XY
                 imageView.setImageResource(img)
+//                imageView.size
                 imageView.setPadding(10, 10, 10, 10)
                 imageView.adjustViewBounds = true
                 pubFragment_id.addView(imageView, 1)
@@ -79,6 +83,8 @@ class Pub_fragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+//        pubFragmentBack_id
+//        Blurry.with(context).radius(25).sampling(2).onto(rootView as ViewGroup)
         pubDisplay()
     }
 
@@ -87,7 +93,7 @@ class Pub_fragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pub, container, false)
+        return inflater.inflate(com.example.tp_tdm1.R.layout.fragment_pub, container, false)
     }
 
 

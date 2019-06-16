@@ -2,20 +2,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+              android:layout_height="150dp" android:layout_marginLeft="1dp" android:layout_marginTop="5dp"
+              android:layout_marginRight="5dp" android:layout_marginBottom="1dp" android:background="#00201818"
+              android:divider="@color/colorPrimary">
 
-    <TextView
+    <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/pubRowName"
-            android:text="hello"
-            android:background="@color/colorPubBackGround"
-            android:gravity="center_horizontal" android:textSize="18sp" android:textColor="#fff"/>
-    <ImageView
-            android:onClick="pubClick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/pubRowImg"
-            android:adjustViewBounds="true"
-            android:background="@color/colorPubBackGround" />
+            android:layout_height="match_parent" android:weightSum="100">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:layout_weight="35">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pubRowName"
+                    android:text="hello"
+                    android:background="@color/colorPubBackGround"
+                    android:gravity="center_horizontal" android:textSize="18sp"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/pubRowDesc"/>
+        </LinearLayout>
+        <ImageView
+                android:onClick="pubClick"
+                android:layout_weight="65"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/pubRowImg"
+                android:adjustViewBounds="true"/>
+    </LinearLayout>
+    <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#041052"
+    />
 </LinearLayout>

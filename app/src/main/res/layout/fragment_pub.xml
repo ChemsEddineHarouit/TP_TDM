@@ -4,7 +4,7 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:clickable="true"
-             tools:context=".Fragments.Pub_fragment" android:background="#90030101">
+             tools:context=".Fragments.Pub_fragment" android:background="#C4030101" android:id="@+id/pubFragmentBack_id">
 
     <!-- TODO: Update blank fragment layout -->
     <android.support.constraint.ConstraintLayout

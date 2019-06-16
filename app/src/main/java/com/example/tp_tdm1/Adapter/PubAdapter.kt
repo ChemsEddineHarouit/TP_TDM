@@ -22,6 +22,7 @@ class PubAdapter(var pubList: ArrayList<Pub>): RecyclerView.Adapter<PubAdapter.V
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val pub = pubList[position]
         holder?.name?.text = pub.name
+        holder?.description?.text = pub.description
         val img_id = pub.imgs?.first()
         if(img_id != null)  holder?.img?.setImageResource(img_id)
         holder?.img?.setTag(pub.numero)
@@ -38,6 +39,7 @@ class PubAdapter(var pubList: ArrayList<Pub>): RecyclerView.Adapter<PubAdapter.V
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val name = itemView.findViewById<TextView>(R.id.pubRowName)
+        val description = itemView.findViewById<TextView>(R.id.pubRowDesc)
         val img = itemView.findViewById<ImageView>(R.id.pubRowImg)
 
     }
@@ -65,8 +67,6 @@ class PubAdapter(var pubList: ArrayList<Pub>): RecyclerView.Adapter<PubAdapter.V
             override fun publishResults(charSequence: CharSequence, filterResults: Filter.FilterResults) {
                 pubSearchList = filterResults.values as ArrayList<Pub>
                 println("---------------------------- $pubSearchList")
-//                pubList.clear();
-//                pubList.addAll(pubSearchList!!);
                 if(pubSearchList != null) pubList = pubSearchList!!
                 else                        pubList = allPubs
                 notifyDataSetChanged()
