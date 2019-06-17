@@ -4,7 +4,7 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:clickable="true"
-             tools:context=".Fragments.Pub_fragment" android:background="#90030101">
+             tools:context=".Fragments.Pub_fragment" android:background="#C4030101" android:id="@+id/pubFragmentBack_id">
 
     <!-- TODO: Update blank fragment layout -->
     <android.support.constraint.ConstraintLayout
@@ -32,7 +32,22 @@
                         android:layout_height="wrap_content"
                         android:text="@string/hello_blank_fragment" android:id="@+id/description_id"
                         android:textColor="#FFFFFF" android:background="#00FFFFFF" android:gravity="center_horizontal"
-                        android:layout_marginBottom="100dp"/>
+                        android:layout_marginTop="10dp" android:layout_marginBottom="10dp"/>
+                <TextView
+                        android:text="Date:"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/date_id"
+                        android:textColor="#E6D1CFCF"/>
+                <TextView
+                        android:text="Prix: "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/prix_id"
+                        android:textColor="#FFFFFF"/>
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/tel_id"
+                        android:textStyle="bold|italic" android:layout_marginBottom="100dp"
+                        android:textColor="#FFFFFF"/>
             </LinearLayout>
         </ScrollView>
     </android.support.constraint.ConstraintLayout>

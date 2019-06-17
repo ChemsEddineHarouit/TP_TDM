@@ -1,16 +1,17 @@
 package com.example.tp_tdm1.Models
 
-import java.time.LocalDate
-import java.time.LocalDateTime
+
+import android.net.Uri
 import java.util.*
 
-class Pub(numero : Int, name : String?, description : String?,price : Float, imgs : List<Int>?){
+class Pub(numero : Int, name : String?, description : String?,price : Int, imgs : List<Uri>?, tel:String?){
     val numero = numero
     val name = name
     val description = description
     val price = price
     val date = Calendar.getInstance().time
     val imgs = imgs
+    val tel = tel
 
     fun log(): Unit {
         println("------------------------------------------------------------------------------")

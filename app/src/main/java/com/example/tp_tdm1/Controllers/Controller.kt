@@ -1,41 +1,59 @@
 package com.example.tp_tdm1.Controllers
 
+import android.net.Uri
 import com.example.tp_tdm1.Models.Pub
-import com.example.tp_tdm1.R.drawable.*
 
 class   Controller private constructor(){
-    public var pubs = mutableListOf<Pub>()
-    //pubsImgs and pubDescriptions is the DataBase
-    val pubsImgs = hashMapOf<Int,ArrayList<Int>>(
-        1 to arrayListOf(p1_1, p1_2, p1_3),
-        2 to arrayListOf(p2_1, p2_2, p2_3),
-        3 to arrayListOf(p3_1),
-        4 to arrayListOf(p4_1, p4_2, p4_3, p4_4),
-        5 to arrayListOf(p5_1, p5_2),
-        6 to arrayListOf(p6_1)
-    )
-    val pubDescriptions = hashMapOf<Int, List<String>>(
-        1 to listOf("Samsung S10", "Pour le 10è anniversaire, Samsung nous offre son dernier Smartphone qui côute un rein et 1/2 poumon, avec les fonctionnalités qu'il contient ça en vaut la peine :D"),
-        2 to listOf("Nikon", "Dernier appareil à photo qui peut détecter les poils de vos nez, une résolution insroyablement croissante comme un pain au chocolat"),
-        3 to listOf("Axa", "AXA est un groupe international français spécialisé dans l'assurance depuis sa création, et dans la gestion d'actifs depuis 1994. La marque AXA est la première marque mondiale d’assurance pour la 10ᵉ année consécutive en 2018."),
-        4 to listOf("Clio", "La Renault Clio est une gamme d'automobile polyvalente du constructeur français Renault qui nou dévoile la 5è version de son oeuvre"),
-        5 to listOf("Ecole", "Les écoles privées sont des écoles qui ne sont pas administrées par leur gouvernement local, étatique ou national et qui conservent donc le droit de pratiquer la religion"),
-        6 to listOf("Voyage", "Un voyage pour famille dans des hotels 5 étoiles, Piscine, Spa, khoudra et même à oued semar. Composez le 000")
-    )
+    public var pubs = ArrayList<Pub>()
 
-    val pubPrices = hashMapOf(
-        1 to 120000.toFloat(),
-        2 to 150000.toFloat(),
-        3 to 100000.toFloat(),
-        4 to 180000.toFloat(),
-        5 to 200000.toFloat(),
-        6 to 50000.toFloat()
+    fun  uriOf(str : String): Uri{
+        return Uri.parse("android.resource://com.example.tp_tdm1/drawable/$str")
+    }
 
-    )
+    fun initPubs(){
+
+        pubs = arrayListOf<Pub>()
+
+
+        var pub = Pub(1, "3 Villas Tlemcen",
+                "3 Villas avec piscine, très cher. On veut vous arnaquer",
+                120000, arrayListOf(uriOf("p1_1"), uriOf("p1_2"), uriOf("p1_3")),
+                "054 065 180")
+        addPub(pub)
+
+        pub = Pub(2, "Villa à Hassi Messaoud F8",
+                "Vous êtes sérieux? vous avez cru que c'était à Hassi Messaoud?",
+                150000, arrayListOf(uriOf("p2_1"), uriOf("p2_2")),
+                "054 197 379")
+        addPub(pub)
+
+        pub = Pub(3, "Villa moderne F3 Kouba",
+                "Très jolie villa, je la mets en vente par besoin d'agent. Attention on a découvert un fantome dedans",
+                100000, arrayListOf(uriOf("p3_1"), uriOf("p3_2"), uriOf("p3_3"), uriOf("p3_4")),
+                "077 999 531")
+        addPub(pub)
+
+        pub = Pub(4, "Villa F6 Bordj",
+                "Villa mebnya ki lkwava, ghir siman. Wer9a mates3a",
+                    180000, arrayListOf(uriOf("p4_1")), "066 201 959")
+        addPub(pub)
+
+        pub = Pub(5, "Appartement F4 Oued Semar",
+                "Besoin d'un séjour à Oued Semar? Un appartement au dessus de Hamza. Un complet poulet vous est offert!",
+                200000, arrayListOf(uriOf("p5_1"), uriOf("p5_2"), uriOf("p5_3"), uriOf("p5_4")),
+                "055 167 792")
+        addPub(pub)
+
+        pub = Pub(6, "Dar el Badji F3",
+                "El badji habitait cette maison, câlme et pas chère",
+                50000, arrayListOf(uriOf("p6_1"), uriOf("p6_2")), "055 415 443")
+        addPub(pub)
+    }
 
     fun addPub(pub : Pub){
         pubs.add(pub)
     }
+
     fun getPub(index : Int) : Pub? {
         for (pub in pubs){
             if (pub.numero == index) return pub

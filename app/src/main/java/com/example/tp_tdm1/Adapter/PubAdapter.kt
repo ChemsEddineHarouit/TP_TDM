@@ -10,23 +10,31 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.tp_tdm1.Models.Pub
 import com.example.tp_tdm1.R
+import java.text.SimpleDateFormat
 
 
 class PubAdapter(var pubList: List<Pub>): RecyclerView.Adapter<PubAdapter.ViewHolder>(), Filterable {
 
     var pubSearchList : List<Pub>? = null
-    val allPubs = pubList
+    var allPubs = pubList
 
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val pub = pubList[position]
         holder?.name?.text = pub.name
+        holder?.description?.text = pub.description
         val img_id = pub.imgs?.first()
-        if(img_id != null)  holder?.img?.setImageResource(img_id)
+        if(img_id != null)  holder?.img?.setImageURI(img_id)
         holder?.img?.setTag(pub.numero)
-        holder.price.text = "Prix: ${pub.price}"
-        holder.date.text = "Date: ${pub.date}"
+
+//        holder.price.text = "Prix: ${pub.price}"
+//        holder.date.text = "Date: ${pub.date}"
+        holder.price.text = "${pub.price} DA"
+        val dateFormat = SimpleDateFormat("dd MMMM yyyy à hh:mm")
+        holder.date.text = "Ajouté le: ${dateFormat.format(pub.date.time)}"
+        holder.tel.text = "Tél: ${pub.tel}"
+
         //pubList.sortedWith(compareBy({it.name}))
     }
 
@@ -41,9 +49,25 @@ class PubAdapter(var pubList: List<Pub>): RecyclerView.Adapter<PubAdapter.ViewHo
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val name = itemView.findViewById<TextView>(R.id.pubRowName)
+        val description = itemView.findViewById<TextView>(R.id.pubRowDesc)
         val img = itemView.findViewById<ImageView>(R.id.pubRowImg)
         val price = itemView.findViewById<TextView>(R.id.pubRowPrice)
         val date = itemView.findViewById<TextView>(R.id.pubRowDate)
+        val tel = itemView.findViewById<TextView>(R.id.pubRowTel)
+    }
+
+    fun addPub(pub: Pub) {
+        var newList = arrayListOf<Pub>()
+
+        for (p in pubList){
+            newList.add(p)
+        }
+        newList.add(pub)
+
+        pubList = newList
+        pubSearchList = newList
+        allPubs = newList
+        notifyDataSetChanged()
     }
 
     fun sort(attr : String, asc :Boolean = true) : Boolean{
@@ -67,7 +91,6 @@ class PubAdapter(var pubList: List<Pub>): RecyclerView.Adapter<PubAdapter.ViewHo
         return true
     }
 
-
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(charSequence: CharSequence): Filter.FilterResults {
@@ -90,12 +113,12 @@ class PubAdapter(var pubList: List<Pub>): RecyclerView.Adapter<PubAdapter.ViewHo
             override fun publishResults(charSequence: CharSequence, filterResults: Filter.FilterResults) {
                 pubSearchList = filterResults.values as ArrayList<Pub>
                 println("---------------------------- $pubSearchList")
-//                pubList.clear();
-//                pubList.addAll(pubSearchList!!);
                 if(pubSearchList != null) pubList = pubSearchList!!
                 else                        pubList = allPubs
                 notifyDataSetChanged()
             }
         }
     }
+
+
 }
