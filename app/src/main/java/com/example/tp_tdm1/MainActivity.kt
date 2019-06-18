@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -21,6 +22,9 @@ import com.example.tp_tdm1.R.drawable.*
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity()  {
@@ -28,11 +32,14 @@ class MainActivity : AppCompatActivity()  {
     lateinit var pubFragment : Pub_fragment
     lateinit var pubAdapter : PubAdapter
 
-
+    val GET_FORM_DATA = 10
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val controller = Controller.instance
+//        Toast.makeText(this, "entered", Toast.LENGTH_SHORT).show()
+
+
         controller.initPubs()
 
         super.onCreate(savedInstanceState)
@@ -41,7 +48,8 @@ class MainActivity : AppCompatActivity()  {
 
         add_pub.setOnClickListener { view ->
             val intent = Intent(this, AddPub::class.java)
-            startActivity(intent)
+            //sauvegardi l' etat
+            startActivityForResult(intent, GET_FORM_DATA)
         }
 
         pubsRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false) as RecyclerView.LayoutManager?
@@ -50,17 +58,61 @@ class MainActivity : AppCompatActivity()  {
         pubsRecyclerView.adapter = pubAdapter
     }
 
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//
+//        if (requestCode != GET_FORM_DATA || resultCode != RESULT_OK) {
+//            // didn't pick image
+//            Toast.makeText(this, "Veuillez selectionner des données", Toast.LENGTH_SHORT).show()
+//            return
+//        }
+//
+//
+//        val name = data?.getStringExtra("name")
+//        val description = data?.getStringExtra("description")
+//        val price = data?.getIntExtra("price", 50000)
+//
+//        val tel = data?.getStringExtra("tel")
+//        val imgsStr = data?.getStringArrayListExtra("uris")
+//
+//        if(name == null) return
+//        if(imgsStr?.size == 0){
+//            Toast.makeText(this, "no pics", Toast.LENGTH_LONG).show()
+//            return
+//        }
+//
+//        val imgs = imgsStr?.map { Uri.parse(it) }
+//
+//        Toast.makeText(this, imgs?.get(0).toString(), Toast.LENGTH_LONG).show()
+//
+//        val dateFormat = SimpleDateFormat("dd MMMM yyyy à hh:mm")
+//        var controller = Controller.instance
+//
+//        val pub = Pub(controller.pubs.size + 1, name, description, price, imgs, tel, dateFormat.format(Calendar.getInstance().time))
+//
+////        controller.addPub(pub)
+////        pubAdapter.addPub(pub)
+//        pubAdapter = PubAdapter(ArrayList(controller.pubs))
+//        pubsRecyclerView.adapter = pubAdapter
+//
+//    }
+
+    override fun onPause() {
+        super.onPause()
+    }
+
     override fun onRestoreInstanceState(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onRestoreInstanceState(savedInstanceState, persistentState)
+
+        val pubs = savedInstanceState?.getParcelableArray("pubs")
+
+        Toast.makeText(this, pubs?.size.toString(), Toast.LENGTH_LONG).show()
     }
     override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
         super.onSaveInstanceState(outState, outPersistentState)
         //outState.putStringArrayList()
 
-        val names = ArrayList<String>()
-        val descs = ArrayList<String>()
-        val prices = ArrayList<String>()
-        
+        outState?.putParcelableArray("pubs", pubAdapter.pubList.toTypedArray())
 
     }
 
@@ -70,6 +122,7 @@ class MainActivity : AppCompatActivity()  {
         val name = intent.getStringExtra("name")
         val description = intent.getStringExtra("description")
         val price = intent.getStringExtra("price")
+        val tel = intent.getStringExtra("tel")
         val imgsStr = intent.getStringArrayListExtra("uris")
 
         if(name == null) return
@@ -81,13 +134,15 @@ class MainActivity : AppCompatActivity()  {
         val imgs = imgsStr.map { Uri.parse(it) }
 
 
-
+        val dateFormat = SimpleDateFormat("dd MMMM yyyy à hh:mm")
         var controller = Controller.instance
 
-        val pub = Pub(controller.pubs.size + 1, name, description, price.toInt(), imgs, "0556 27 64 61")
+        val pub = Pub(controller.pubs.size + 1, name, description, price.toInt(), imgs, tel, dateFormat.format(Calendar.getInstance().time))
 
         controller.addPub(pub)
         pubAdapter.addPub(pub)
+//        pubAdapter = PubAdapter(ArrayList(controller.pubs))
+//        pubsRecyclerView.adapter = pubAdapter
 //        Toast.makeText(this, name, Toast.LENGTH_SHORT).show()
     }
 
@@ -137,6 +192,9 @@ class MainActivity : AppCompatActivity()  {
     }
 
 
+
+
+
     public fun pubClick(view : View): Unit {
         var tag :Int = view.getTag() as Int
         val position= tag
@@ -151,7 +209,3 @@ class MainActivity : AppCompatActivity()  {
 
     }
 }
-//
-//private fun android.widget.SearchView.setOnQueryTextListener() {
-//    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//}

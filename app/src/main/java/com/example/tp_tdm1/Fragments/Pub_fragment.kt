@@ -17,6 +17,15 @@ import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.fragment_pub.*
 import android.R.attr.radius
 import java.text.SimpleDateFormat
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.support.v4.content.ContextCompat
+import android.Manifest
+import com.example.tp_tdm1.MainActivity
+
+//import android.R
+
+
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -49,6 +58,8 @@ class Pub_fragment : Fragment(){
         }
 
 
+
+
     }
 
     private fun pubInit(): Unit {
@@ -63,8 +74,8 @@ class Pub_fragment : Fragment(){
         description_id.setText(pub?.description)
         name_id.setText(pub?.name)
         prix_id.text = "${pub?.price} DA"
-        val dateFormat = SimpleDateFormat("dd MMMM yyyy à hh:mm")
-        date_id.text = "Ajouté le: ${dateFormat.format(pub?.date?.time)}"
+//        val dateFormat = SimpleDateFormat("dd MMMM yyyy à hh:mm")
+        date_id.text = "Ajouté le: ${pub?.date}"
         tel_id.text = "Tél: ${pub?.tel}"
         val controller = Controller.instance
         val imgs = pub?.imgs
@@ -91,6 +102,11 @@ class Pub_fragment : Fragment(){
 //        pubFragmentBack_id
 //        Blurry.with(context).radius(25).sampling(2).onto(rootView as ViewGroup)
         pubDisplay()
+        call_btn.setOnClickListener {
+            val callIntent = Intent(Intent.ACTION_CALL)
+            callIntent.data = Uri.parse("tel:" + pub?.tel)//change the number
+            startActivity(callIntent)
+        }
     }
 
     override fun onCreateView(

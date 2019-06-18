@@ -1,13 +1,11 @@
 package com.example.tp_tdm1.Adapter
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import com.example.tp_tdm1.Models.Pub
 import com.example.tp_tdm1.R
 import java.text.SimpleDateFormat
@@ -25,14 +23,17 @@ class PubAdapter(var pubList: List<Pub>): RecyclerView.Adapter<PubAdapter.ViewHo
         holder?.name?.text = pub.name
         holder?.description?.text = pub.description
         val img_id = pub.imgs?.first()
-        if(img_id != null)  holder?.img?.setImageURI(img_id)
+
+//        println("${pub.name} ++++++++ ${img_id.toString()}")
+
+        if(img_id != null)  holder.img?.setImageURI(img_id)
         holder?.img?.setTag(pub.numero)
 
 //        holder.price.text = "Prix: ${pub.price}"
 //        holder.date.text = "Date: ${pub.date}"
         holder.price.text = "${pub.price} DA"
-        val dateFormat = SimpleDateFormat("dd MMMM yyyy à hh:mm")
-        holder.date.text = "Ajouté le: ${dateFormat.format(pub.date.time)}"
+//        val dateFormat = SimpleDateFormat("dd MMMM yyyy à hh:mm")
+        holder.date.text = "Ajouté le: ${pub.date}"
         holder.tel.text = "Tél: ${pub.tel}"
 
         //pubList.sortedWith(compareBy({it.name}))

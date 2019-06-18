@@ -42,6 +42,7 @@ class AddPub : AppCompatActivity() {
             val name = add_pub_name.text.toString()
             val description = add_pub_description.text.toString()
             val price = add_pub_price.text.toString()
+            val tel = add_pub_tel.text.toString()
 
             // control missing values
             if (name == ""){
@@ -59,13 +60,25 @@ class AddPub : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            if (tel == ""){
+                Toast.makeText(this, "Veuillez introduire le téléphone", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+
             // create the intent and push the values into it
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("name", name)
             intent.putExtra("description", description)
             intent.putExtra("price", price)
+            intent.putExtra("tel", tel)
             intent.putStringArrayListExtra("uris", uri_list)
 
+
+
+
+//            setResult(RESULT_OK, intent)
+//            finish()
             // go to MainActivity
             startActivity(intent)
         }
